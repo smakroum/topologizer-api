@@ -5,21 +5,24 @@ class TopologiesController < ApplicationController
   end
 
   def show
-    begin
-      @topology = Topology.find(params[:id])
-    rescue
-      @topology = '{}'
-    end
+    @topology = Topology.find(params[:id])
+    render :json => @topology
+  end
+
+  def create
+    @topology = Topology.create params.require(:topology).permit(:name)
     render json: @topology
   end
 
-  def current
-    begin
-      @topology = Topology.find_by!(is_current: true)
-    rescue
-      @topology = '{}'
-    end
+  def update
+    @topology = Topology.find(params[:id])
+    @topology = @topology.update params.require(:topology).permit(:name)
     render json: @topology
+  end
+
+  def count
+    @topologies = Topology.all
+    render :json => @topologies.count
   end
 
 end

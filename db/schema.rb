@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180317171322) do
+ActiveRecord::Schema.define(version: 20180503143849) do
+
+  create_table "hosts", force: :cascade do |t|
+    t.string "name"
+    t.string "ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "links", force: :cascade do |t|
     t.integer "source_id"
@@ -25,6 +32,16 @@ ActiveRecord::Schema.define(version: 20180317171322) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "topology_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "name"
+    t.datetime "start"
+    t.datetime "end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "topology_id"
+    t.index ["topology_id"], name: "index_tasks_on_topology_id"
   end
 
   create_table "topologies", force: :cascade do |t|
