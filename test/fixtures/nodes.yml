@@ -1,10 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+node_one:
+  id: 1
   name: NodeTest1
+  topology_id: 1
 
-two:
+node_two:
+  id: 2
   name: NodeTest2
+  topology_id: 1
 
-three:
+node_three:
+  id: 3
   name: NodeTest3
+  topology_id: 2

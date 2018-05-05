@@ -7,15 +7,15 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_equal "application/json; charset=utf-8", response.headers["Content-Type"]
     assert_equal 2, response.parsed_body.count
     assert_equal "Task1", response.parsed_body[0]["name"]
-    assert_equal tasks(:one).start, response.parsed_body[0]["start"]
-    assert_equal tasks(:one).end, response.parsed_body[0]["end"]
+    assert_equal tasks(:task_one).start, response.parsed_body[0]["start"]
+    assert_equal tasks(:task_one).end, response.parsed_body[0]["end"]
     assert_equal "Task2", response.parsed_body[1]["name"]
-    assert_equal tasks(:two).start, response.parsed_body[1]["start"]
-    assert_equal tasks(:two).end, response.parsed_body[1]["end"]
+    assert_equal tasks(:task_two).start, response.parsed_body[1]["start"]
+    assert_equal tasks(:task_two).end, response.parsed_body[1]["end"]
   end
 
   test "GET task/1. Should return task 1 as json" do
-    @topology = tasks(:one)
+    @topology = tasks(:task_one)
     get url_for(@topology)
     assert_response :success
     assert_equal "application/json; charset=utf-8", response.headers["Content-Type"]
@@ -36,7 +36,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "PUT task/1. Should update task as json" do
-    @topology = tasks(:one)
+    @topology = tasks(:task_one)
     assert_equal "Task1", @topology.name
     put url_for(@topology), as: :json, params: {
         name: "Task1updated",

@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+topology_one:
   id: 1
   name: Topology1
 
-two:
+topology_two:
   id: 2
   name: Topology2
