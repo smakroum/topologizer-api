@@ -11,7 +11,7 @@ class TopologiesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "GET topology/1. Should return topology 1 as json" do
-    @topology = topologies(:one)
+    @topology = topologies(:topology_one)
     get url_for(@topology)
     assert_response :success
     assert_equal "application/json; charset=utf-8", response.headers["Content-Type"]
@@ -28,7 +28,7 @@ class TopologiesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "PUT topology/1. Should update topology as json" do
-    @topology = topologies(:one)
+    @topology = topologies(:topology_one)
     assert_equal "Topology1", @topology.name
     put url_for(@topology), as: :json, params: {
         name: "Topology1updated",

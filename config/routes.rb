@@ -4,13 +4,14 @@ Rails.application.routes.draw do
 
     constraints( id: /\d+/) do
 
-      resources :tasks
+      resources :tasks, except: [:new, :edit]
 
-      resources :topologies do
+      resources :topologies, except: [:new, :edit] do
 
         get 'nodes/count', to: 'nodes#count'
         resources :nodes, except: [:new, :edit]
         get 'nodes/:id/links', to: 'nodes#show_links'
+        resources :links, except: [:new, :edit]
 
       end
     end

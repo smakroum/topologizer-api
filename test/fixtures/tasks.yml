@@ -1,12 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+task_one:
   id: 1
   name: Task1
   start: 2018-04-01 13:55:06
   end: 2018-04-01 13:55:06
 
-two:
+task_two:
   id: 2
   name: Task2
   start: 2018-04-01 13:55:06
