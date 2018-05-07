@@ -16,7 +16,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "GET task/1. Should return task 1 as json" do
     @topology = tasks(:task_one)
-    get url_for(@topology)
+    get task_path(@topology)
     assert_response :success
     assert_equal "application/json; charset=utf-8", response.headers["Content-Type"]
     assert_equal 1, response.parsed_body["id"]
@@ -36,14 +36,21 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "PUT task/1. Should update task as json" do
-    @topology = tasks(:task_one)
-    assert_equal "Task1", @topology.name
-    put url_for(@topology), as: :json, params: {
+    task = tasks(:task_one)
+    assert_equal "Task1", task.name
+    put task_path(task), as: :json, params: {
         name: "Task1updated",
     }
     assert_response :success
-    @task_after_update = Task.find(@topology.id)
-    assert_equal "Task1updated", @task_after_update.name
+    task_after_update = Task.find(task.id)
+    assert_equal "Task1updated", task_after_update.name
+  end
+
+  test "DELETE task/1/. Should delete task 1" do
+    task = tasks(:task_one)
+    delete task_path(task)
+    assert_response :success
+    assert_nil Task.find_by(id: task.id)
   end
 
 end
