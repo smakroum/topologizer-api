@@ -20,6 +20,11 @@ class TopologiesController < ApplicationController
     render json: @topology
   end
 
+  def destroy
+    @topology = Topology.find(params[:id])
+    @topology.delete
+  end
+
   def count
     @topologies = Topology.all
     render :json => @topologies.count
