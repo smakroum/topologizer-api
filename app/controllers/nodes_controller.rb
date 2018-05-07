@@ -1,6 +1,6 @@
 class NodesController < ApplicationController
   before_action :set_nodes_by_topology, only: [:index, :count, :create]
-  before_action :set_node_by_topology, only: [:show, :update, :show_links]
+  before_action :set_node_by_topology, only: [:show, :update, :destroy, :show_links]
 
   def index
    render json: @nodes
@@ -26,6 +26,11 @@ class NodesController < ApplicationController
 
   def show_links
     render :json => @node.links.to_json(include: [:source_node, :target_node])
+  end
+
+  def destroy
+    @node.delete
+    render :json => {}
   end
 
   private
