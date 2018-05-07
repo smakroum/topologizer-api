@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180503143849) do
+ActiveRecord::Schema.define(version: 20180507190702) do
 
   create_table "hosts", force: :cascade do |t|
     t.string "name"
@@ -24,7 +24,9 @@ ActiveRecord::Schema.define(version: 20180503143849) do
     t.integer "target_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "topology_id"
     t.index ["source_id", "target_id"], name: "index_links_on_source_id_and_target_id", unique: true
+    t.index ["topology_id"], name: "index_links_on_topology_id"
   end
 
   create_table "nodes", force: :cascade do |t|
