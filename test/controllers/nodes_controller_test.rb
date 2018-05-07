@@ -8,7 +8,9 @@ class NodesControllerTest < ActionDispatch::IntegrationTest
     assert_equal 2, @response.parsed_body.count
     assert_equal "NodeTest1", @response.parsed_body[0]["name"]
     assert_equal "NodeTest2", @response.parsed_body[1]["name"]
+  end
 
+  test "GET topologies/2/nodes. Should return one node as json" do
     get topology_nodes_path(topologies(:topology_two))
     assert_response :success
     assert_equal "application/json; charset=utf-8", @response.headers["Content-Type"]
