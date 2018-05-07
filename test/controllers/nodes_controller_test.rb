@@ -50,4 +50,14 @@ class NodesControllerTest < ActionDispatch::IntegrationTest
     node_after_update = Node.find(node_id)
     assert_equal "NodeTest1updated", node_after_update.name
   end
+
+  test "DELETE topology/1/nodes/1. Should delete node 1 as json" do
+    topology = topologies(:topology_one)
+    node_id = 1
+    delete topology_node_path(topology, node_id)
+    assert_response :success
+    assert_nil Node.find_by(id: node_id)
+  end
+
+
 end
